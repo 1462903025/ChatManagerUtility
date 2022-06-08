@@ -21,9 +21,9 @@ namespace ChatManagerUtility
     {
         public string Command { get; } = "PrivateMessaging";
 
-        public string[] Aliases { get; } = { "p", "private" };
+        public string[] Aliases { get; } = { "p", "private", "sl", "私聊"};
 
-        public string Description { get; } = "PrivateMessaging Utility";
+        public string Description { get; } = "私人聊天";
 
         public static event PrivateMsgEventHandler IncomingPrivateMessage;
 
@@ -35,13 +35,13 @@ namespace ChatManagerUtility
         {
             if (!ChatManagerUtilityMain.Instance.Config.MsgTypesAllowed.Contains(Configs.MessageType.PRIVATE))
             {
-                response = "This has been disabled by an administrator. Contact them to enable private chat.";
+                response = "管理员已禁用此功能。联系他们以启用私人聊天.";
                 return false;
             }
 
             if (arguments.Count == 0)
             {
-                response = "You must provide a message to send";
+                response = "您必须提供要发送的消息";
                 return false;
             }
 
@@ -50,7 +50,7 @@ namespace ChatManagerUtility
                 Player targetPlayer = Player.Get(arguments.At(0));
                 if (player.Role.Type is RoleType.Spectator && targetPlayer.Role.Type != RoleType.Spectator)
                 {
-                    response = "Private Message cannot be sent while in spectator mode to a non-spectator Player.";
+                    response = "在观众模式下，无法向非观众玩家发送私人消息.";
                     return false;
                 }
 
@@ -62,11 +62,11 @@ namespace ChatManagerUtility
                 }
                 
                 IncomingPrivateMessage?.Invoke(new PrivateMsgEventArgs($"[P][{player.Nickname}]:" + sb.ToString(), player, targetPlayer));
-                response = "Private Message has been accepted";
+                response = "已接受私聊信息";
                 return true;
             }
             catch (Exception ex){
-                response = $"Unable to send PrivateMessaging because of {ex}";
+                response = $"无法发送私聊信息，因为 {ex}";
             }
             return false;
         }

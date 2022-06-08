@@ -21,9 +21,9 @@ namespace ChatManagerUtility
     {
         public string Command { get; } = "LocalMessaging";
 
-        public string[] Aliases { get; } = { "l", "local" };
+        public string[] Aliases { get; } = { "l", "local", "fj", "附近" };
 
-        public string Description { get; } = "LocalMessaging Utility";
+        public string Description { get; } = "附近聊天";
 
         public static event LocalMsgEventHandler IncomingLocalMessage;
 
@@ -36,13 +36,13 @@ namespace ChatManagerUtility
             
             if(!ChatManagerUtilityMain.Instance.Config.MsgTypesAllowed.Contains(Configs.MessageType.LOCAL))
             {
-                response = "This has been disabled by an administrator. Contact them to enable local chat.";
+                response = "管理员已禁用此功能。联系他们以启用附近聊天。";
                 return false;
             }
 
             if (arguments.Count == 0)
             {
-                response = "You must provide a message to send";
+                response = "您必须提供要发送的消息";
                 return false;
             }
 
@@ -51,16 +51,16 @@ namespace ChatManagerUtility
             try{ 
                 Player player = Player.Get(sender);
                 if(player.Role.Type is RoleType.Spectator){
-                    response = "Local Message cannot be sent while in spectator mode.";
+                    response = "在观众模式下无法发送附近消息.";
                     return false;
                 }
                 String nameToShow = player.Nickname.Length < 6 ? player.Nickname : player.Nickname.Substring(0, (player.Nickname.Length / 3) + 1);
                 IncomingLocalMessage?.Invoke(new LocalMsgEventArgs($"[L][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
-                response = "Local Message has been accepted";
+                response = "附近消息已被接受";
                 return true;
             }
             catch (Exception ex){
-                response = $"Unable to send LocalMessaging because of {ex}";
+                response = $"无法发送附近消息，因为 {ex}";
             }
             return false;
         }

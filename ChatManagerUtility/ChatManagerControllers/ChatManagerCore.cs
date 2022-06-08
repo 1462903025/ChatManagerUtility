@@ -8,7 +8,7 @@ namespace ChatManagerUtility
     public class ChatManagerCore
     {
         /// <summary>
-        /// Whether this application is running or not - should be cleaned up when round ends/plugin disabled
+        /// 此应用程序是否正在运行-当round ends/插件被禁用时应清除
         /// </summary>
         public static bool isRunning;
 

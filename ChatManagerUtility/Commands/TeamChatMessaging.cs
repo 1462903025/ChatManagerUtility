@@ -21,9 +21,9 @@ namespace ChatManagerUtility
     {
         public string Command { get; } = "TeamMessaging";
 
-        public string[] Aliases { get; } = { "t", "team" };
+        public string[] Aliases { get; } = { "t", "team", "td", "团队" };
 
-        public string Description { get; } = "TeamMessaging Utility";
+        public string Description { get; } = "团队聊天";
 
         public static event TeamMsgEventHandler IncomingTeamMessage;
 
@@ -36,13 +36,13 @@ namespace ChatManagerUtility
 
             if (!ChatManagerUtilityMain.Instance.Config.MsgTypesAllowed.Contains(Configs.MessageType.TEAM))
             {
-                response = "This has been disabled by an administrator. Contact them to enable team chat.";
+                response = "管理员已禁用此功能。联系他们以启用团队聊天.";
                 return false;
             }
 
             if (arguments.Count == 0)
             {
-                response = "You must provide a message to send";
+                response = "您必须提供要发送的消息";
                 return false;
             }
 
@@ -51,16 +51,16 @@ namespace ChatManagerUtility
                 Player player = Player.Get(sender);
                 if (player.Role.Type is RoleType.Spectator)
                 {
-                    response = "Local Message cannot be sent while in spectator mode.";
+                    response = "在观众模式下无法发送本地消息.";
                     return false;
                 }
                 String nameToShow = player.Nickname.Length < 6 ? player.Nickname : player.Nickname.Substring(0, (player.Nickname.Length / 3) + 1);
                 IncomingTeamMessage?.Invoke(new TeamMsgEventArgs($"[T][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
-                response = "Team Message has been processed.";
+                response = "已处理团队聊天.";
                 return true;
             }
             catch (Exception ex){
-                response = $"Unable to send TeamMessaging because of {ex}";
+                response = $"无法发送团队聊天，因为 {ex}";
             }
             return false;
         }

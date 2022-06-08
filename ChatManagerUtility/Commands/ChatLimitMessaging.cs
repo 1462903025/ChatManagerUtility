@@ -19,7 +19,7 @@ namespace ChatManagerUtility.Commands
 
         public string[] Aliases { get; } = { "cl", "chatl" };
 
-        public string Description { get; } = "ChatLimit Utility";
+        public string Description { get; } = "聊天限制";
 
         public static event ChatLimitEventHandler IncomingChatLimitMessage;
 
@@ -30,16 +30,16 @@ namespace ChatManagerUtility.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if(arguments.Count == 0){
-                response = "You must provide one parameter modify subscription, Options are: global, local, private, team ";
+                response = "你必须提供一个参数, 包括: qb, fj, sl, td ";
                 return false;
             }
             Player player = Player.Get(sender);
             if(Enum.TryParse(arguments.At(0).ToUpper(), out MessageType channel)){
                 IncomingChatLimitMessage?.Invoke(new ChatLimitEventArgs(arguments.At(0), player, channel));
-                response = "Message has been accepted";
+                response = "消息已被接受";
                 return true;
             }
-            response = $"Channel to change subscription was specified incorrectly: {arguments.At(0)}. Options are: GLOBAL, LOCAL, PRIVATE, TEAM";
+            response = $"更改订阅的频道指定不正确: {arguments.At(0)}. 选项包括: qb, fj, sl, td";
             return false;
            
         }

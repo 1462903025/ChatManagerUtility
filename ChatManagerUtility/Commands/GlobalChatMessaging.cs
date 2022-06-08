@@ -21,9 +21,9 @@ namespace ChatManagerUtility
     {
         public string Command { get; } = "GlobalMessaging";
 
-        public string[] Aliases { get; } = { "g", "global" };
+        public string[] Aliases { get; } = { "g", "global", "qb", "全部" };
 
-        public string Description { get; } = "GlobalMessaging Utility";
+        public string Description { get; } = "全部聊天";
 
         public static event GlobalMsgEventHandler IncomingGlobalMessage;
 
@@ -37,13 +37,13 @@ namespace ChatManagerUtility
 
             if (!ChatManagerUtilityMain.Instance.Config.MsgTypesAllowed.Contains(Configs.MessageType.GLOBAL))
             {
-                response = "This has been disabled by an administrator. Contact them to enable global chat.";
+                response = "管理员已禁用此功能。联系他们以启用全局聊天。";
                 return false;
             }
 
             if (arguments.Count == 0)
             {
-                response = "You must provide a message to send";
+                response = "您必须提供要发送的消息";
                 return false;
             }
 
@@ -51,11 +51,11 @@ namespace ChatManagerUtility
                 Player player = Player.Get(sender);
                 String nameToShow = player.Nickname.Length < 6 ? player.Nickname : player.Nickname.Substring(0, (player.Nickname.Length / 3) + 1);
                 IncomingGlobalMessage?.Invoke(new GlobalMsgEventArgs($"[G][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
-                response = "Global Message has been accepted";
+                response = "已接受全局消息";
                 return true;
             }
             catch (Exception ex){
-                response = $"Unable to send Global Message because of {ex}";
+                response = $"无法发送全局消息，因为 {ex}";
             }
             return false;
         }
