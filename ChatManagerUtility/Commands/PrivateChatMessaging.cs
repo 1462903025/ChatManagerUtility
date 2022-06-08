@@ -21,7 +21,7 @@ namespace ChatManagerUtility
     {
         public string Command { get; } = "PrivateMessaging";
 
-        public string[] Aliases { get; } = { "p", "private", "sl", "私聊"};
+        public string[] Aliases { get; } = { "p", "private", "sl", "私聊", "s" };
 
         public string Description { get; } = "私人聊天";
 
@@ -61,7 +61,7 @@ namespace ChatManagerUtility
                     sb.Append(" ");
                 }
                 
-                IncomingPrivateMessage?.Invoke(new PrivateMsgEventArgs($"[P][{player.Nickname}]:" + sb.ToString(), player, targetPlayer));
+                IncomingPrivateMessage?.Invoke(new PrivateMsgEventArgs($"[私聊][{player.Nickname}]:" + sb.ToString(), player, targetPlayer));
                 response = "已接受私聊信息";
                 return true;
             }

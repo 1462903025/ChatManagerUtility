@@ -19,9 +19,9 @@ namespace ChatManagerUtility
     [CommandHandler(typeof(ClientCommandHandler))]
     class GlobalMessaging : ICommand
     {
-        public string Command { get; } = "GlobalMessaging";
+        public string Command { get; } = "chat";
 
-        public string[] Aliases { get; } = { "g", "global", "qb", "全部" };
+        public string[] Aliases { get; } = { "ac", "qb", "全部", "q" };
 
         public string Description { get; } = "全部聊天";
 
@@ -50,7 +50,7 @@ namespace ChatManagerUtility
             try{ 
                 Player player = Player.Get(sender);
                 String nameToShow = player.Nickname.Length < 6 ? player.Nickname : player.Nickname.Substring(0, (player.Nickname.Length / 3) + 1);
-                IncomingGlobalMessage?.Invoke(new GlobalMsgEventArgs($"[G][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
+                IncomingGlobalMessage?.Invoke(new GlobalMsgEventArgs($"[全部][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
                 response = "已接受全局消息";
                 return true;
             }

@@ -21,7 +21,7 @@ namespace ChatManagerUtility
     {
         public string Command { get; } = "TeamMessaging";
 
-        public string[] Aliases { get; } = { "t", "team", "td", "团队" };
+        public string[] Aliases { get; } = { "c", "team", "td", "团队"};
 
         public string Description { get; } = "团队聊天";
 
@@ -55,7 +55,7 @@ namespace ChatManagerUtility
                     return false;
                 }
                 String nameToShow = player.Nickname.Length < 6 ? player.Nickname : player.Nickname.Substring(0, (player.Nickname.Length / 3) + 1);
-                IncomingTeamMessage?.Invoke(new TeamMsgEventArgs($"[T][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
+                IncomingTeamMessage?.Invoke(new TeamMsgEventArgs($"[团队][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
                 response = "已处理团队聊天.";
                 return true;
             }

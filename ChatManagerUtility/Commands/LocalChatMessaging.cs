@@ -21,7 +21,7 @@ namespace ChatManagerUtility
     {
         public string Command { get; } = "LocalMessaging";
 
-        public string[] Aliases { get; } = { "l", "local", "fj", "附近" };
+        public string[] Aliases { get; } = { "l", "local", "fj", "附近", "f" };
 
         public string Description { get; } = "附近聊天";
 
@@ -55,7 +55,7 @@ namespace ChatManagerUtility
                     return false;
                 }
                 String nameToShow = player.Nickname.Length < 6 ? player.Nickname : player.Nickname.Substring(0, (player.Nickname.Length / 3) + 1);
-                IncomingLocalMessage?.Invoke(new LocalMsgEventArgs($"[L][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
+                IncomingLocalMessage?.Invoke(new LocalMsgEventArgs($"[附近][{nameToShow}]:" + String.Join(" ", arguments.ToList()), player));
                 response = "附近消息已被接受";
                 return true;
             }

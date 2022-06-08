@@ -15,9 +15,9 @@ namespace ChatManagerUtility.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     class ChatLimitMessaging : ICommand
     {
-        public string Command { get; } = "ChatLimit";
+        public string Command { get; } = "chatl";
 
-        public string[] Aliases { get; } = { "cl", "chatl" };
+        public string[] Aliases { get; } = { "cl", "chatl", "c"};
 
         public string Description { get; } = "聊天限制";
 
@@ -30,7 +30,7 @@ namespace ChatManagerUtility.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if(arguments.Count == 0){
-                response = "你必须提供一个参数, 包括: qb, fj, sl, td ";
+                response = "你必须提供一个参数, 包括: qb(全部),fj(附近),sl（私聊）,td（团队） ";
                 return false;
             }
             Player player = Player.Get(sender);
@@ -39,7 +39,7 @@ namespace ChatManagerUtility.Commands
                 response = "消息已被接受";
                 return true;
             }
-            response = $"更改订阅的频道指定不正确: {arguments.At(0)}. 选项包括: qb, fj, sl, td";
+            response = $"更改订阅的频道指定不正确: {arguments.At(0)}. 选项包括: qb(全部),fj(附近),sl（私聊）,td（团队）";
             return false;
            
         }
