@@ -3,14 +3,14 @@
 This plugin basically allows you globa, local, team, and private chat. Local is bounded by a 9feet magnitude check (Height is not calculated), and is enabled by the host.
 If a channel is enabled, consumers (players) can unsubscribe from the stream (chat) through a chatlimit command (run to enable/disable). Below is an example config.
 
-![ChatManagerUtility ISSUES](https://img.shields.io/github/issues/Undid-Iridium/ChatManagerUtility)
-![ChatManagerUtility FORKS](https://img.shields.io/github/forks/Undid-Iridium/ChatManagerUtility)
-![ChatManagerUtility LICENSE](https://img.shields.io/github/license/Undid-Iridium/ChatManagerUtility)
+![ChatManagerUtility ISSUES](https://img.shields.io/github/issues/1462903025/ChatManagerUtility)
+![ChatManagerUtility FORKS](https://img.shields.io/github/forks/1462903025/ChatManagerUtility)
+![ChatManagerUtility LICENSE](https://img.shields.io/github/license/1462903025/ChatManagerUtility)
 
 
-![ChatManagerUtility LATEST](https://img.shields.io/github/v/release/Undid-Iridium/ChatManagerUtility?include_prereleases&style=flat-square)
-![ChatManagerUtility LINES](https://img.shields.io/tokei/lines/github/Undid-Iridium/ChatManagerUtility)
-![ChatManagerUtility DOWNLOADS](https://img.shields.io/github/downloads/Undid-Iridium/ChatManagerUtility/total?style=flat-square)
+![ChatManagerUtility LATEST](https://img.shields.io/github/v/release/1462903025/ChatManagerUtility?include_prereleases&style=flat-square)
+![ChatManagerUtility LINES](https://img.shields.io/tokei/lines/github/1462903025/ChatManagerUtility)
+![ChatManagerUtility DOWNLOADS](https://img.shields.io/github/downloads/1462903025/ChatManagerUtility/total?style=flat-square)
 
 
 
